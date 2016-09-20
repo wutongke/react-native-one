@@ -1,7 +1,7 @@
 /**
  * Created by erfli on 9/10/16.
  */
-var STORE = require('../Utilities/Store')
+var STORE = require('../Utilities/TimeUtil')
 import * as React from "react";
 import {
     View,

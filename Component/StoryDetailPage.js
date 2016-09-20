@@ -1,13 +1,20 @@
-import * as React from "react";
+import React, {PropTypes}from "react";
 import {
     Text,
     View,
     StyleSheet,
     WebView
 } from 'react-native';
+import * as ActionType from "../Constant/ActionType"
+import {connect} from "react-redux"
 /**
  * Created by erfli on 9/11/16.
  */
+const propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    begin: PropTypes.bool.isRequired,
+    children: PropTypes.arrayOf(React.PropTypes.node).isRequired
+};
 class StoryDetailPage extends React.Component {
 
     constructor(props) {
@@ -18,9 +25,14 @@ class StoryDetailPage extends React.Component {
     }
 
     componentWillMount() {
+        const {dispatch} = this.props;
         if (this.props.targetUrl == null || this.props.targetUrl.length == 0) {
             this.fetchDaily();
-        }else{
+            dispatch({
+                type: ActionType.Fetch_Story_Detail,
+                begin: true
+            })
+        } else {
             this.state.detailUrl = this.props.targetUrl;
         }
     }
@@ -63,5 +75,11 @@ var styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     }
 });
-
-module.exports = StoryDetailPage;
+function mapStateToProps(state) {
+    const { begin } = state;
+    return {
+        begin
+    };
+}
+StoryDetailPage.propTypes = propTypes;
+export default connect(mapStateToProps)(StoryDetailPage);

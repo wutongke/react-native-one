@@ -1,7 +1,5 @@
 import {AppRegistry} from 'react-native';
 
-import Example from './Main';
+import Root from './app';
 
-AppRegistry.registerComponent('Main', () = > Example
-)
-;
+AppRegistry.registerComponent('Example', () => Root);

@@ -3,7 +3,7 @@ import {PropTypes} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import Button from 'react-native-button';
 import {Actions} from 'react-native-router-flux';
-import Store from "../Utilities/Store"
+import Store from "../Utilities/TimeUtil"
 import DatePicker from 'react-native-datepicker';
 
 const contextTypes = {
