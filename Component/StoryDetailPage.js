@@ -4,35 +4,31 @@ import {
     View,
     StyleSheet,
     BackAndroid,
-    WebView
+    WebView,
+    Image
 } from 'react-native';
-import * as ActionType from "../Constant/ActionType"
+import * as Actions from "../Actions/story"
 import {connect} from "react-redux"
 /**
  * Created by erfli on 9/11/16.
  */
 const propTypes = {
     dispatch: PropTypes.func.isRequired,
-    begin: PropTypes.bool.isRequired,
+    story: PropTypes.object.isRequired,
     children: PropTypes.arrayOf(React.PropTypes.node).isRequired
 };
 class StoryDetailPage extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             detailUrl: "",
-        }
+        };
     }
 
     componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.targetUrl == null || this.props.targetUrl.length == 0) {
-            this.fetchDaily();
-            dispatch({
-                type: ActionType.Fetch_Story_Detail,
-                begin: true
-            })
+            dispatch(Actions.fetchStoryBegin(this.props.id))
         } else {
             this.state.detailUrl = this.props.targetUrl;
         }
@@ -43,30 +39,22 @@ class StoryDetailPage extends React.Component {
         BackAndroid.removeEventListener('hardwareBackPress', this.goBack);
     }
 
-    fetchDaily() {
-        var url = "http://news-at.zhihu.com/api/4/news/" + this.props.id;
-        fetch(url)
-            .then((response)=>response.json())
-            .then((jsonResponse) => {
-                if (jsonResponse["share_url"]) {
-                    var shareUrl = jsonResponse["share_url"];
-                    this.setState({
-                        detailUrl: shareUrl
-                    })
-                }
-            }).catch((error) => {
-
-            if (error instanceof SyntaxError) {
-                this.setState({});
-            }
-        })
-    }
-
     render() {
+        if (this.props.refreshing) {
+            return (
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Image
+                        source={require('../Assets/Images/ring.gif')}
+                        style={{width: 70, height: 70}}
+                    />
+                </View>
+            );
+        }
+        const {story} = this.props;
         return (
             <View style={{flex: 1}}>
                 <WebView style={styles.webview_style}
-                         url={this.state.detailUrl}
+                         url={story.story["share_url"]}
                          startInLoadingState={true}
                          domStorageEnabled={true}
                          javaScriptEnabled={true}
@@ -82,9 +70,9 @@ var styles = StyleSheet.create({
     }
 });
 function mapStateToProps(state) {
-    const { begin } = state;
+    const {story} = state;
     return {
-        begin
+        story
     };
 }
 StoryDetailPage.propTypes = propTypes;

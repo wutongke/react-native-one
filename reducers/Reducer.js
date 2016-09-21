@@ -4,17 +4,25 @@
  */
 import * as ActionType from "../Constant/ActionType"
 const initialState = {
-    begin: false
+    id: "",
+    refreshing: true,
+    loaded: false,
+    story: new Object()
 };
-export default function reducer(state = initialState, action) {
+export default function story(state = initialState, action) {
     switch (action.type) {
         case ActionType.Fetch_Story_Detail:
             return Object.assign({}, state, {
-                begin: true
+                id: action.id,
+                refreshing: true,
+                loaded: false
             });
         case ActionType.Fetch_Story_Detail_Done:
             return Object.assign({}, state, {
-                begin: false
+                id: action.id,
+                refreshing: false,
+                load: true,
+                story: action.story
             });
         default:
             return state;
