@@ -20,17 +20,12 @@ const propTypes = {
 class StoryDetailPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            detailUrl: "",
-        };
     }
 
     componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.targetUrl == null || this.props.targetUrl.length == 0) {
             dispatch(Actions.fetchStoryBegin(this.props.id))
-        } else {
-            this.state.detailUrl = this.props.targetUrl;
         }
         BackAndroid.addEventListener('hardwareBackPress', this.goBack);
     }
@@ -50,11 +45,18 @@ class StoryDetailPage extends React.Component {
                 </View>
             );
         }
-        const {story} = this.props;
+
+        var targetUrl = "";
+        if (!this.props.targetUrl) {
+            const {story} = this.props;
+            targetUrl = story.story["share_url"];
+        } else {
+            targetUrl = this.props.targetUrl;
+        }
         return (
             <View style={{flex: 1}}>
                 <WebView style={styles.webview_style}
-                         url={story.story["share_url"]}
+                         url={targetUrl}
                          startInLoadingState={true}
                          domStorageEnabled={true}
                          javaScriptEnabled={true}

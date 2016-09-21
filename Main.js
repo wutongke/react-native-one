@@ -5,6 +5,7 @@ import StoryDetailPage from "./Component/StoryDetailPage"
 import {
     Router,
     Scene,
+    ActionConst
 } from 'react-native-router-flux'
 import
 {
@@ -28,7 +29,7 @@ class Main extends React.Component {
                             <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
                         </Scene>
                     </Scene>
-                    <Scene key="StoryDetail" clone component={StoryDetailPage}/>
+                    <Scene key="StoryDetail" component={StoryDetailPage} duration={0}/>
                 </Scene>
             </Router>
 
