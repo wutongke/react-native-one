@@ -1,6 +1,5 @@
 import * as React from "react";
 import Drawer from "./Component/NavigationDrawer"
-import TabIcon from "./Component/TabIcon"
 import ZhiHuPage from "./Component/ZhihuPage"
 import StoryDetailPage from "./Component/StoryDetailPage"
 import {
@@ -18,17 +17,18 @@ import
 class Main extends React.Component {
     render() {
         return (
-            <Router>
-                <Scene key="tabbar" component={Drawer}>
-                    <Scene
-                        key="main"
-                        tabs
-                        tabBarStyle={styles.tabBarStyle}
-                        tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
-                        <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial icon={TabIcon}/>
-                        <Scene key='StoryDetail' component={StoryDetailPage} hideNavBar={false}
-                               navigationBarStyle={styles.playerTab}/>
+            <Router getSceneStyle={getSceneStyle}>
+                <Scene key="root">
+                    <Scene key="tabbar" component={Drawer}>
+                        <Scene
+                            key="main"
+                            tabs
+                            tabBarStyle={styles.tabBarStyle}
+                            tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
+                            <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
+                        </Scene>
                     </Scene>
+                    <Scene key="StoryDetail" clone component={StoryDetailPage}/>
                 </Scene>
             </Router>
 
@@ -48,4 +48,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
     },
 });
+
+// define this based on the styles/dimensions you use
+const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
+    const style = {
+        flex: 1,
+        backgroundColor: '#fff',
+        shadowColor: null,
+        shadowOffset: null,
+        shadowOpacity: null,
+        shadowRadius: null,
+    };
+    if (computedProps.isActive) {
+        style.marginTop = computedProps.hideNavBar ? 0 : 64;
+        style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+    }
+    return style;
+};
 export default Main;

@@ -3,6 +3,7 @@ import {
     Text,
     View,
     StyleSheet,
+    BackAndroid,
     WebView
 } from 'react-native';
 import * as ActionType from "../Constant/ActionType"
@@ -24,7 +25,7 @@ class StoryDetailPage extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.targetUrl == null || this.props.targetUrl.length == 0) {
             this.fetchDaily();
@@ -35,6 +36,11 @@ class StoryDetailPage extends React.Component {
         } else {
             this.state.detailUrl = this.props.targetUrl;
         }
+        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+    }
+
+    componentWillUnmount() {
+        BackAndroid.removeEventListener('hardwareBackPress', this.goBack);
     }
 
     fetchDaily() {

@@ -4,8 +4,9 @@
  */
 import React from 'react';
 import createLogger from 'redux-logger';
+import saga from 'redux-saga';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
-import { Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 import reducer from './reducers/Reducer';
 import Main from './Main';
 const middlewares = [];
@@ -14,6 +15,8 @@ if (process.env.NODE_ENV === 'development') {
     const logger = createLogger();
     middlewares.push(logger);
 }
+
+middlewares.push(saga())
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
