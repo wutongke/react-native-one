@@ -11,6 +11,10 @@ simple zhihu use react-native
 
 [react-native-drawer](https://github.com/root-two/react-native-drawer)
 
+[redux-saga](https://github.com/yelouafi/redux-saga)
+
+[redux-logger](https://github.com/evgenyrodionov/redux-logger)
+
 ### blog
 [React native 项目入门](http://www.jianshu.com/p/4662721756b8)
 
