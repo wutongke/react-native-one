@@ -8,8 +8,13 @@ simple zhihu use react-native
 ### lib
 
 [react-native-router-flux](https://github.com/aksonov/react-native-router-flux)
+
 [react-native-drawer](https://github.com/root-two/react-native-drawer)
 
+### blog
+[React native 项目入门](http://www.jianshu.com/p/4662721756b8)
+
+[react-native 项目进阶(redux, redux saga, redux logger)](http://www.jianshu.com/p/27fe63d14439)
 ### getting started
  * npm install
  * react-native start
