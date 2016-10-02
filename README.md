@@ -1,9 +1,12 @@
 # react-native-zhihu
 simple zhihu use react-native
 
-![1](http://upload-images.jianshu.io/upload_images/1407686-19a7d252820343c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
-![2](http://upload-images.jianshu.io/upload_images/1407686-0d73070a3924d578.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
-![3](http://upload-images.jianshu.io/upload_images/1407686-df3bc7ab6c3a59bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+![1](http://upload-images.jianshu.io/upload_images/1407686-7b88de62c6d87481.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+![2](http://upload-images.jianshu.io/upload_images/1407686-827cad32c186d8e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+![3](http://upload-images.jianshu.io/upload_images/1407686-bbe6858f1697f484.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+![4](http://upload-images.jianshu.io/upload_images/1407686-be4ebdb5dd56b464.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+![5](http://upload-images.jianshu.io/upload_images/1407686-51410ca0de08ebf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+
 
 ### lib
 
