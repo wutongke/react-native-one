@@ -1,7 +1,7 @@
 import * as React from "react";
-import Drawer from "./Component/NavigationDrawer"
-import ZhiHuPage from "./Component/ZhihuPage"
-import StoryDetailPage from "./Component/StoryDetailPage"
+import Drawer from "./Pages/NavigationDrawer"
+import ZhiHuPage from "./Pages/ZhihuPage"
+import StoryDetailPage from "./Pages/StoryDetailPage"
 import {
     Router,
     Scene,
