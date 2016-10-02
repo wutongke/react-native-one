@@ -32,10 +32,15 @@ const TabView = (props, context) => {
     return (
         <View style={[styles.container, props.sceneStyle]}>
             <Button style={{justifyContent: 'center', alignItems: 'center'}}
-                onPress={() => {
-                drawer.close();
-                Actions.ZhiHuPage();
-            }}>知乎日报</Button>
+                    onPress={() => {
+                        drawer.close();
+                        Actions.ZhiHuPage();
+                    }}>知乎日报</Button>
+            <Button style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}
+                    onPress={() => {
+                        drawer.close();
+                        Actions.Douban();
+                    }}>豆瓣电影</Button>
             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}>
                 <DatePicker
                     date={Store.date}
@@ -62,7 +67,7 @@ const TabView = (props, context) => {
                     }}
                 />
             </View>
-            <Button style={{justifyContent: 'center', alignItems: 'center', marginTop:30}}
+            <Button style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}
                     onPress={() => {
                         drawer.close();
                         Actions.About({targetUrl: "https://github.com/wutongke"});

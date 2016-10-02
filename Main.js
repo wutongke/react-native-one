@@ -2,6 +2,7 @@ import * as React from "react";
 import Drawer from "./Pages/NavigationDrawer"
 import ZhiHuPage from "./Pages/ZhihuPage"
 import StoryDetailPage from "./Pages/StoryDetailPage"
+import Douban from "./Pages/Douban"
 import {
     Router,
     Scene,
@@ -27,10 +28,12 @@ class Main extends React.Component {
                             tabBarStyle={styles.tabBarStyle}
                             tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                             <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
+                            <Scene key="Douban" component={Douban} title="豆瓣电影"/>
                             <Scene key="About" component={StoryDetailPage} duration={0}/>
                         </Scene>
                     </Scene>
                     <Scene key="StoryDetail" component={StoryDetailPage} duration={0}/>
+                    <Scene key="FilmDetail" component={StoryDetailPage} duration={0}/>
                 </Scene>
             </Router>
 
@@ -63,7 +66,6 @@ const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) 
     };
     if (computedProps.isActive) {
         style.marginTop = computedProps.hideNavBar ? 0 : 64;
-        style.marginBottom = computedProps.hideTabBar ? 0 : 50;
     }
     return style;
 };
