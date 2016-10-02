@@ -27,6 +27,7 @@ class Main extends React.Component {
                             tabBarStyle={styles.tabBarStyle}
                             tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                             <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
+                            <Scene key="About" component={StoryDetailPage} duration={0}/>
                         </Scene>
                     </Scene>
                     <Scene key="StoryDetail" component={StoryDetailPage} duration={0}/>

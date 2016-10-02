@@ -65,7 +65,7 @@ const TabView = (props, context) => {
             <Button style={{justifyContent: 'center', alignItems: 'center', marginTop:30}}
                     onPress={() => {
                         drawer.close();
-                        Actions.StoryDetail({targetUrl: "https://github.com/wutongke"});
+                        Actions.About({targetUrl: "https://github.com/wutongke"});
                     }}>About</Button>
         </View>
     );
