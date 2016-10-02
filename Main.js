@@ -3,6 +3,7 @@ import Drawer from "./Pages/NavigationDrawer"
 import ZhiHuPage from "./Pages/ZhihuPage"
 import StoryDetailPage from "./Pages/StoryDetailPage"
 import Douban from "./Pages/Douban"
+import One from "./Pages/One/One"
 import {
     Router,
     Scene,
@@ -30,10 +31,12 @@ class Main extends React.Component {
                             <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
                             <Scene key="Douban" component={Douban} title="豆瓣电影"/>
                             <Scene key="About" component={StoryDetailPage} duration={0}/>
+                            <Scene key="One" component={One} title="[one]一个"/>
                         </Scene>
                     </Scene>
                     <Scene key="StoryDetail" component={StoryDetailPage} duration={0}/>
                     <Scene key="FilmDetail" component={StoryDetailPage} duration={0}/>
+                    <Scene key="WebView" component={StoryDetailPage} duration={0}/>
                 </Scene>
             </Router>
 

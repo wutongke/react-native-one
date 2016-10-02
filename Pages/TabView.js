@@ -41,6 +41,11 @@ const TabView = (props, context) => {
                         drawer.close();
                         Actions.Douban();
                     }}>豆瓣电影</Button>
+            <Button style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}
+                    onPress={() => {
+                        drawer.close();
+                        Actions.One();
+                    }}>One一个</Button>
             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}>
                 <DatePicker
                     date={Store.date}
