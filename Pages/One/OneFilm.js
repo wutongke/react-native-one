@@ -9,6 +9,7 @@ import {
     ListView,
     Dimensions,
     BackAndroid,
+    InteractionManager,
     StyleSheet
 } from 'react-native';
 import {apiURL} from "../../Utilities/UrlCons"
@@ -29,8 +30,11 @@ class OneFilm extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchDaily();
-        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        InteractionManager.runAfterInteractions(() => {
+            // ...long-running synchronous task...
+            this.fetchDaily();
+            BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        });
     }
 
 

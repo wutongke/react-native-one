@@ -12,6 +12,7 @@ import {
     BackAndroid,
     Dimensions,
     TouchableOpacity,
+    InteractionManager,
     StyleSheet
 } from 'react-native';
 /**
@@ -28,8 +29,11 @@ class OnePic extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchDaily();
-        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        InteractionManager.runAfterInteractions(() => {
+            // ...long-running synchronous task...
+            this.fetchDaily();
+            BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        });
     }
 
 
@@ -60,7 +64,7 @@ class OnePic extends React.Component {
 
     render() {
         return (
-            <View style={{marginLeft: 5, marginBottom: 5, flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <GridView
                     style={styles.row}
                     items={this.state.images}
@@ -98,11 +102,12 @@ var styles = StyleSheet.create({
     imageContent: {
         flex: 1,
         width: deviceWidth / 2,
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     logo: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         height: 180,
         width: deviceWidth / 2 - 40,
         marginBottom: 8,
@@ -110,6 +115,8 @@ var styles = StyleSheet.create({
     text: {
         width: deviceWidth / 2 - 20,
         fontSize: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
         color: "#000000",
         marginBottom: 8,
     }

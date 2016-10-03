@@ -9,8 +9,9 @@ import {
     ListView,
     BackAndroid,
     TouchableHighlight,
+    InteractionManager,
     Dimensions,
-    StyleSheet
+    StyleSheet,
 } from 'react-native';
 import ViewPager from 'react-native-viewpager';
 import  {apiURL} from "../../Utilities/UrlCons";
@@ -36,8 +37,11 @@ class OneRead extends React.Component {
 
 
     componentDidMount() {
-        this.fetchDaily();
-        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        InteractionManager.runAfterInteractions(() => {
+            // ...long-running synchronous task...
+            this.fetchDaily();
+            BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+        });
     }
 
 

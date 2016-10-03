@@ -9,9 +9,9 @@ import OneFilm from './OneFilm';
 class One extends React.Component {
     render() {
         return (
-            <ScrollableTabView>
-                <OnePic tabLabel="首页"/>
+            <ScrollableTabView initialPage={1}>
                 <OneRead tabLabel="阅读"/>
+                <OnePic tabLabel="首页"/>
                 <OneFilm tabLabel="电影"/>
             </ScrollableTabView>
         )
