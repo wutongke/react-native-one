@@ -20,7 +20,8 @@
     "redux": "^3.6.0",
     "react-redux": "^4.4.5",
     "redux-logger": "^2.6.1",
-    "redux-saga": "^0.11.1"
+    "redux-saga": "^0.11.1",
+    "react-native-viewpager": "^0.2.1"
   },
   "devDependencies": {
     "babel-jest": "^14.1.0",

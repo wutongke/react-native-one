@@ -4,17 +4,20 @@
 import * as React from "react";
 import {Actions} from 'react-native-router-flux';
 import GridView from '../../Components/GridView'
+import {apiURL} from '../../Utilities/UrlCons'
 import {
     View,
     Text,
     Image,
     BackAndroid,
+    Dimensions,
     TouchableOpacity,
     StyleSheet
 } from 'react-native';
 /**
  * Created by erfli on 9/10/16.
  */
+var deviceWidth = Dimensions.get('window').width;
 class OnePic extends React.Component {
 
     constructor(props) {
@@ -32,7 +35,8 @@ class OnePic extends React.Component {
 
     fetchDaily() {
         var DateUtil = require('../../Utilities/TimeUtil')
-        var url = "http://v3.wufazhuce.com:8000/api/hp/bymonth/" + DateUtil.dateForm1;
+        // var url = "http://v3.wufazhuce.com:8000/api/hp/bymonth/2016-08";
+        var url = apiURL.baseUrl + apiURL.homePage + DateUtil.dateForm1;
         fetch(url)
             .then((response)=>response.json())
             .then((jsonResponse) => {
@@ -56,8 +60,9 @@ class OnePic extends React.Component {
 
     render() {
         return (
-            <View style={{marginLeft: 5, marginBottom: 5}}>
+            <View style={{marginLeft: 5, marginBottom: 5, flex: 1}}>
                 <GridView
+                    style={styles.row}
                     items={this.state.images}
                     itemsPerRow={2}
                     renderItem={this.renderItem}
@@ -68,46 +73,46 @@ class OnePic extends React.Component {
 
     renderItem(image) {
         return (
-            <View>
-                <TouchableOpacity key={image.hpcontent_id} style={styles.row} activeOpacity={0.5}
-                                  onPress={()=>Actions.WebView({targetUrl: image.web_url})}
+            <TouchableOpacity key={image.hpcontent_id} style={styles.imageContent} activeOpacity={0.5}
+                              onPress={()=>Actions.WebView({targetUrl: image.web_url})}
+            >
+                <Image
+                    style={styles.logo}
+                    source={{url: image.hp_img_url}}
                 >
-                    <Image
-                        style={styles.logo}
-                        source={{url: image.hp_img_url}}
-                    >
-                    </Image>
-                    <Text style={{
-                        fontSize: 5,
-                        color: "#000000"
-                    }}>{image.hp_content}</Text>
-                </TouchableOpacity>
-            </View>
+                </Image>
+                <Text style={styles.text}>{image.hp_content}</Text>
+            </TouchableOpacity>
         );
     }
 }
 
 var styles = StyleSheet.create({
     row: {
-        height: 100,
-        width: 60,
+        flex: 1,
         marginBottom: 5,
         marginRight: 5,
         marginLeft: 5,
-        flexDirection: 'column'
-    },
-    rowContent: {
-        flex: 1,
         flexDirection: 'row'
     },
-    logo: {
-        height: 80,
-        width: 60,
-        marginLeft: 10,
-        marginBottom: 8,
-        marginRight: 10,
+    imageContent: {
+        flex: 1,
+        width: deviceWidth / 2,
+        flexDirection: 'column'
     },
-
+    logo: {
+        flex: 1,
+        alignItems: 'center',
+        height: 180,
+        width: deviceWidth / 2 - 40,
+        marginBottom: 8,
+    },
+    text: {
+        width: deviceWidth / 2 - 20,
+        fontSize: 10,
+        color: "#000000",
+        marginBottom: 8,
+    }
 });
 
 module.exports = OnePic;

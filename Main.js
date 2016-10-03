@@ -4,6 +4,7 @@ import ZhiHuPage from "./Pages/ZhihuPage"
 import StoryDetailPage from "./Pages/StoryDetailPage"
 import Douban from "./Pages/Douban"
 import One from "./Pages/One/One"
+import ReadingDetail from "./Pages/One/ReadingDetail"
 import {
     Router,
     Scene,
@@ -28,15 +29,16 @@ class Main extends React.Component {
                             tabs
                             tabBarStyle={styles.tabBarStyle}
                             tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
-                            <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报" initial/>
+                            <Scene key="ZhiHuPage" component={ZhiHuPage} title="知乎日报"/>
                             <Scene key="Douban" component={Douban} title="豆瓣电影"/>
                             <Scene key="About" component={StoryDetailPage} duration={0}/>
-                            <Scene key="One" component={One} title="[one]一个"/>
+                            <Scene key="One" component={One} title="[one]一个" initial/>
                         </Scene>
                     </Scene>
-                    <Scene key="StoryDetail" component={StoryDetailPage} duration={0}/>
-                    <Scene key="FilmDetail" component={StoryDetailPage} duration={0}/>
+                    <Scene key="StoryDetail" title="知乎日报" component={StoryDetailPage} duration={0}/>
+                    <Scene key="FilmDetail" title="豆瓣电影" component={StoryDetailPage} duration={0}/>
                     <Scene key="WebView" component={StoryDetailPage} duration={0}/>
+                    <Scene key="ReadingDetail" title="短篇" component={ReadingDetail} duration={0}/>
                 </Scene>
             </Router>
 

@@ -5,57 +5,95 @@ import * as React from "react";
 import {
     Text,
     View,
+    Image,
+    ListView,
+    Dimensions,
+    BackAndroid,
     StyleSheet
 } from 'react-native';
+import {apiURL} from "../../Utilities/UrlCons"
 /**
  * Created by erfli on 9/10/16.
  */
+var deviceWidth = Dimensions.get('window').width;
 class OneFilm extends React.Component {
 
     constructor(props) {
         super(props);
+        var list = new ListView.DataSource({
+            rowHasChanged: (r1, r2)=> r1 !== r2
+        })
+        this.state = {
+            movies: list.cloneWithRows([])
+        }
+    }
+
+    componentDidMount() {
+        this.fetchDaily();
+        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+    }
+
+
+    fetchDaily() {
+        var bannerUrl = apiURL.baseUrl + apiURL.movieList + '0';
+        fetch(bannerUrl)
+            .then((response)=>response.json())
+            .then((jsonResponse) => {
+                if (jsonResponse["data"]) {
+                    var movies = jsonResponse["data"];
+                    this.setState({
+                        movies: this.state.movies.cloneWithRows(movies)
+                    });
+                }
+            }).catch((error) => {
+
+            if (error instanceof SyntaxError) {
+                alert("SyntaxError error");
+            }
+        });
     }
 
     render() {
         return (
-            <View>
-                <Text style={{flex: 1}}>one一个</Text>
+            <View style={{flex: 1}}>
+                <ListView
+                    style={styles.listview}
+                    dataSource={this.state.movies}
+                    renderRow={this.renderItem}
+                />
             </View>
         )
     }
+
+    renderItem(rowData, sectionID, rowID) {
+        return (
+            <View>
+                <Image style={{
+                    width: deviceWidth,
+                    height: 140,
+                }} source={{url: rowData.cover}}>
+                    <View style={styles.row}>
+                        <Text style={{
+                            fontSize: 28,
+                            color: '#DC143C'
+                        }}>{rowData.score}</Text>
+                    </View>
+                </Image>
+            </View>
+        );
+    }
 }
 var styles = StyleSheet.create({
+    listview: {
+        flex: 1,
+        backgroundColor: '#FCFCFC',
+    },
     row: {
         flex: 1,
-        height: 50,
-        marginBottom: 20,
-        marginRight: 10,
-        marginLeft: 10
-    },
-    rowContent: {
-        flex: 1,
+        width: deviceWidth,
+        height: 140,
         flexDirection: 'row'
     },
-    logo: {
-        height: 40,
-        width: 40,
-        marginLeft: 10,
-        marginBottom: 8,
-        marginRight: 10,
-        shadowColor: '#000000',
-        shadowOpacity: 0.8,
-        shadowRadius: 1,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-    },
-    divider: {
-        marginLeft: 15,
-        marginRight: 15,
-        height: 1,
-        backgroundColor: '#000'
-    }
 });
 
 module.exports = OneFilm;
