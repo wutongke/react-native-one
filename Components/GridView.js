@@ -25,7 +25,6 @@ import {
 const propTypes = {
   items: PropTypes.array,
   renderItem: PropTypes.func,
-  style: PropTypes.func,
   itemsPerRow: PropTypes.number,
   onEndReached: PropTypes.func
 };
@@ -100,7 +99,6 @@ GridView.propTypes = propTypes;
 GridView.defaultProps = {
   items: [],
   renderItem: null,
-  style: undefined,
   itemsPerRow: 1,
   onEndReached: undefined
 };
