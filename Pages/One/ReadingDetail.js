@@ -18,7 +18,7 @@ import  {apiURL} from "../../Utilities/UrlCons";
 /**
  * Created by erfli on 9/10/16.
  */
-class OneRead extends React.Component {
+export default class OneRead extends React.Component {
     constructor(props) {
         super(props);
 
@@ -75,5 +75,3 @@ var styles = StyleSheet.create({
         marginRight: 15
     },
 });
-
-module.exports = OneRead;

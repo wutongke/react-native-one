@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Film from "./Film"
 
-class Douban extends React.Component {
+export default class Douban extends React.Component {
 
     constructor(props) {
         super(props)
@@ -95,4 +95,3 @@ var styles = StyleSheet.create({
         marginTop: 5
     }
 });
-module.exports = Douban;

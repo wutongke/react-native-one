@@ -17,7 +17,7 @@ import {apiURL} from "../../Utilities/UrlCons"
  * Created by erfli on 9/10/16.
  */
 var deviceWidth = Dimensions.get('window').width;
-class OneFilm extends React.Component {
+export default class OneFilm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -99,5 +99,3 @@ var styles = StyleSheet.create({
         flexDirection: 'row'
     },
 });
-
-module.exports = OneFilm;

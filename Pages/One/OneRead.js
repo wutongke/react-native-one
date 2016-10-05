@@ -19,7 +19,7 @@ import {Actions} from 'react-native-router-flux'
 /**
  * Created by erfli on 9/10/16.
  */
-class OneRead extends React.Component {
+export default class OneRead extends React.Component {
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({
@@ -160,5 +160,3 @@ var styles = StyleSheet.create({
         backgroundColor: '#139'
     }
 });
-
-module.exports = OneRead;

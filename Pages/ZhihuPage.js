@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import StoryCell from './StoryCell'
-class ZhihuPage extends React.Component {
+export default class ZhihuPage extends React.Component {
 
     constructor(props) {
         super(props)
@@ -106,4 +106,3 @@ var styles = StyleSheet.create({
         marginTop: 5
     }
 });
-module.exports = ZhihuPage;

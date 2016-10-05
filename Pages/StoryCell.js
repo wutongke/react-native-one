@@ -10,7 +10,7 @@ import {Actions} from 'react-native-router-flux';
 /**
  * Created by erfli on 9/10/16.
  */
-class StoryCell extends React.Component {
+export default class StoryCell extends React.Component {
     goToStoryDetailPage(id) {
         Actions.StoryDetail({id: id});
     }
@@ -77,5 +77,3 @@ var styles = StyleSheet.create({
         backgroundColor: '#000'
     }
 });
-
-module.exports = StoryCell;

@@ -19,7 +19,7 @@ import {
  * Created by erfli on 9/10/16.
  */
 var deviceWidth = Dimensions.get('window').width;
-class OnePic extends React.Component {
+export default class OnePic extends React.Component {
 
     constructor(props) {
         super(props);
@@ -121,5 +121,3 @@ var styles = StyleSheet.create({
         marginBottom: 8,
     }
 });
-
-module.exports = OnePic;

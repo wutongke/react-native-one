@@ -8,7 +8,7 @@ const propTypes = {
   navigationState: PropTypes.object,
 };
 
-class NavigationDrawer extends React.Component {
+export default class NavigationDrawer extends React.Component {
   render() {
     const state = this.props.navigationState;
     const children = state.children;
@@ -34,5 +34,3 @@ class NavigationDrawer extends React.Component {
 }
 
 NavigationDrawer.propTypes = propTypes;
-
-export default NavigationDrawer;

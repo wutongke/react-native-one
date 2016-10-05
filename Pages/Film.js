@@ -10,7 +10,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-class Film extends React.Component {
+export default class Film extends React.Component {
     onPress(url) {
         Actions.FilmDetail({targetUrl: url});
     }
@@ -79,5 +79,3 @@ var styles = StyleSheet.create({
         backgroundColor: '#000'
     }
 });
-
-module.exports = Film;

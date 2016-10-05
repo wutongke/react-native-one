@@ -6,7 +6,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import OnePic from './OnePic';
 import OneRead from './OneRead';
 import OneFilm from './OneFilm';
-class One extends React.Component {
+export default class One extends React.Component {
     render() {
         return (
             <ScrollableTabView initialPage={1}>
@@ -17,4 +17,3 @@ class One extends React.Component {
         )
     }
 };
-module.exports = One;
