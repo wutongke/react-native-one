@@ -97,7 +97,7 @@ var styles = StyleSheet.create({
         marginBottom: 5,
         marginRight: 5,
         marginLeft: 5,
-        flexDirection: 'row'
+        flexDirection: 'column'
     },
     imageContent: {
         flex: 1,
