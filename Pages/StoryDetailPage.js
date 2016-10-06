@@ -15,7 +15,6 @@ import {connect} from "react-redux"
 const propTypes = {
     dispatch: PropTypes.func.isRequired,
     story: PropTypes.object.isRequired,
-    children: PropTypes.arrayOf(React.PropTypes.node).isRequired
 };
 class StoryDetailPage extends React.Component {
     constructor(props) {
@@ -56,7 +55,7 @@ class StoryDetailPage extends React.Component {
         return (
             <View style={{flex: 1}}>
                 <WebView style={styles.webview_style}
-                         url={targetUrl}
+                         source={{url: targetUrl}}
                          startInLoadingState={true}
                          domStorageEnabled={true}
                          javaScriptEnabled={true}

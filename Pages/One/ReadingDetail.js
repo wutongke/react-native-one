@@ -1,15 +1,10 @@
 /**
  * Created by erfli on 10/3/16.
  */
-/**
- * Created by erfli on 10/2/16.
- */
 import * as React from "react";
 import {
     Text,
-    View,
-    Image,
-    ListView,
+    ScrollView,
     BackAndroid,
     Dimensions,
     StyleSheet
@@ -56,11 +51,12 @@ export default class OneRead extends React.Component {
     }
 
     render() {
+        const content = this.state.essay.replace(/<br>/g," ");
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <Text style={{fontSize: 15, marginBottom: 10, alignItems: 'center'}}>{this.state.title}</Text>
-                <Text style={{fontSize: 10}}>{this.state.essay}</Text>
-            </View>
+                <Text style={{fontSize: 10}}>{content}</Text>
+            </ScrollView>
         );
     }
 
@@ -69,9 +65,9 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 15,
-        marginRight: 15
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 15,
+        paddingRight: 15
     },
 });
