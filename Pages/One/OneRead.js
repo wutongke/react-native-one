@@ -149,6 +149,7 @@ var styles = StyleSheet.create({
         height: 140,
         width: deviceWidth,
         backgroundColor: '#F5FCFF',
+        overflow: 'hidden'
     },
     listview: {
         flex: 1,

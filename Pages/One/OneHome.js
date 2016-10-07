@@ -57,7 +57,7 @@ export default class OnePic extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, backgroundColor: '#fff', width: DeviceWidth}}>
+            <View style={{flex: 1, backgroundColor: '#fff', width: DeviceWidth, overflow: 'hidden'}}>
                 <ViewPager
                     style={styles.row}
                     isLoop={false}
