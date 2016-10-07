@@ -91,31 +91,50 @@ export default class OneRead extends React.Component {
                         autoPlay={true}
                     />
                 </View>
-                <ListView
-                    style={styles.listview}
-                    dataSource={this.state.essays}
-                    renderRow={(rowData, sectionID, rowID)=>
-                        <TouchableHighlight
-                            key={rowData.content_id}
-                            activeOpacity={0.5}
-                            onPress={()=>Actions.ReadingDetail({id: rowData.content_id})}
-                        >
-                            <View style={{
-                                flex: 1,
-                                flexDirection: 'column',
-                                marginTop: 10,
-                                marginLeft: 15,
-                                marginRight: 15
-                            }}>
-                                <Text style={{fontSize: 12, marginTop: 10}}>{rowData.hp_title}</Text>
-                                <Text style={{fontSize: 8}}>{rowData.author.user_name}</Text>
-                                <Text style={{fontSize: 8, marginBottom: 20}}>{rowData.guide_word}</Text>
-                                <View style={styles.divider}></View>
-                            </View>
-                        </TouchableHighlight>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    borderColor: '#a0a0a0',
+                    borderRadius: 3,
+                    borderWidth: 1,
+                    padding: 5,
+                    margin: 10
+                }}>
+                    <ListView
+                        style={styles.listview}
+                        dataSource={this.state.essays}
+                        renderRow={(rowData, sectionID, rowID)=>
+                            <TouchableHighlight
+                                key={rowData.content_id}
+                                activeOpacity={0.5}
+                                onPress={()=>Actions.ReadingDetail({id: rowData.content_id})}
+                            >
+                                <View style={{
+                                    flex: 1,
+                                    flexDirection: 'column',
+                                    marginTop: 3,
+                                    marginLeft: 3,
+                                    marginRight: 3
+                                }}>
+                                    <Text style={{
+                                        fontSize: 12,
+                                        marginTop: 5,
+                                        fontWeight: 'bold'
+                                    }}>{rowData.hp_title}</Text>
+                                    <Text style={{fontSize: 8, marginTop: 5}}>{rowData.author[0].user_name}</Text>
+                                    <Text
+                                        style={{
+                                            fontSize: 8,
+                                            marginTop: 3,
+                                            marginBottom: 10
+                                        }}>{rowData.guide_word}</Text>
+                                    <View style={styles.divider}></View>
+                                </View>
+                            </TouchableHighlight>
 
-                    }
-                />
+                        }
+                    />
+                </View>
             </View>
         );
     }
@@ -126,14 +145,6 @@ export default class OneRead extends React.Component {
                 height: 140,
                 width: deviceWidth,
             }} source={{url: data.cover}}>
-                <View style={{width: deviceWidth, height: 140, flexDirection: 'column'}}>
-                    <Text style={{
-                        fontSize: 10,
-                        marginTop: 110,
-                        marginLeft: 20,
-                    }}>{data.bottom_text}</Text>
-                </View>
-
             </Image>
         );
     }
@@ -158,6 +169,6 @@ var styles = StyleSheet.create({
     },
     divider: {
         height: 0.5,
-        backgroundColor: '#139'
+        backgroundColor: '#a0a0a0'
     }
 });
