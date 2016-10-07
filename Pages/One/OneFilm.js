@@ -7,12 +7,14 @@ import {
     View,
     Image,
     ListView,
+    TouchableHighlight,
     Dimensions,
     BackAndroid,
     InteractionManager,
     StyleSheet
 } from 'react-native';
-import {apiURL} from "../../Utilities/UrlCons"
+import {apiURL} from "../../Utilities/UrlCons";
+import {Actions} from 'react-native-router-flux';
 /**
  * Created by erfli on 9/10/16.
  */
@@ -64,6 +66,7 @@ export default class OneFilm extends React.Component {
                     style={styles.listview}
                     dataSource={this.state.movies}
                     renderRow={this.renderItem}
+                    enableEmptySections={true}
                 />
             </View>
         )
@@ -71,7 +74,8 @@ export default class OneFilm extends React.Component {
 
     renderItem(rowData, sectionID, rowID) {
         return (
-            <View style={{flex: 1, flexDirection: 'column'}}>
+            <TouchableHighlight style={{flex: 1, flexDirection: 'column'}}
+                                onPress={()=>Actions.WebView({targetUrl: "http://m.wufazhuce.com/movie/" + rowData.id})}>
                 <Image style={{
                     flex: 1,
                     width: deviceWidth,
@@ -84,7 +88,7 @@ export default class OneFilm extends React.Component {
                         }}>{rowData.score}</Text>
                     </View>
                 </Image>
-            </View>
+            </TouchableHighlight>
         );
     }
 }

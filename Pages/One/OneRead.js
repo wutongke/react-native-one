@@ -103,6 +103,7 @@ export default class OneRead extends React.Component {
                     <ListView
                         style={styles.listview}
                         dataSource={this.state.essays}
+                        enableEmptySections={true}
                         renderRow={(rowData, sectionID, rowID)=>
                             <TouchableHighlight
                                 key={rowData.content_id}
