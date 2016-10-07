@@ -71,8 +71,9 @@ export default class OneFilm extends React.Component {
 
     renderItem(rowData, sectionID, rowID) {
         return (
-            <View>
+            <View style={{flex: 1, flexDirection: 'column'}}>
                 <Image style={{
+                    flex: 1,
                     width: deviceWidth,
                     height: 140,
                 }} source={{url: rowData.cover}}>
@@ -93,9 +94,13 @@ var styles = StyleSheet.create({
         backgroundColor: '#FCFCFC',
     },
     row: {
-        flex: 1,
-        width: deviceWidth,
         height: 140,
-        flexDirection: 'row'
+        width: deviceWidth,
+        flexDirection: 'row',
+        backgroundColor: '#00000000',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        paddingRight: 20,
+        paddingBottom: 20,
     },
 });
