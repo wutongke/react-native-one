@@ -79,7 +79,14 @@ export default class ZhihuPage extends React.Component {
             );
         }
         return (
-            <View style={{flex: 1}}>
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                borderColor: '#a0a0a0',
+                borderRadius: 3,
+                borderWidth: 0.5,
+                margin: 5
+            }}>
                 <ListView
                     refreshControl={
                         <RefreshControl

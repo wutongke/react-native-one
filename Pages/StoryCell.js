@@ -48,7 +48,7 @@ var styles = StyleSheet.create({
     row: {
         flex: 1,
         height: 50,
-        marginBottom: 20,
+        marginBottom: 10,
         marginRight: 10,
         marginLeft: 10
     },
@@ -71,9 +71,9 @@ var styles = StyleSheet.create({
         }
     },
     divider: {
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: 10,
+        marginRight: 10,
         height: 1,
-        backgroundColor: '#000'
+        backgroundColor: '#a0a0a0'
     }
 });
