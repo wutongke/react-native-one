@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import StoryCell from './StoryCell'
+import DefaultStyle from '../Styles/ListStyle'
 export default class ZhihuPage extends React.Component {
 
     constructor(props) {
@@ -79,14 +80,7 @@ export default class ZhihuPage extends React.Component {
             );
         }
         return (
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                borderColor: '#a0a0a0',
-                borderRadius: 3,
-                borderWidth: 0.5,
-                margin: 5
-            }}>
+            <View style={DefaultStyle.corner_bg}>
                 <ListView
                     refreshControl={
                         <RefreshControl
@@ -94,7 +88,7 @@ export default class ZhihuPage extends React.Component {
                             onRefresh={this.fetchDaily.bind(this)}
                         />
                     }
-                    style={styles.listview}
+                    style={DefaultStyle.list_view}
                     dataSource={this.state.dataSource}
                     renderRow={(rowData, sectionID, rowID)=>
                         <StoryCell
@@ -106,10 +100,3 @@ export default class ZhihuPage extends React.Component {
         )
     }
 }
-var styles = StyleSheet.create({
-    listview: {
-        flex: 1,
-        backgroundColor: '#FCFCFC',
-        marginTop: 5
-    }
-});

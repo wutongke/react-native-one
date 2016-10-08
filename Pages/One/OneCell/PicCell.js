@@ -9,11 +9,12 @@ import{
     StyleSheet
 } from 'react-native'
 import {DeviceWidth} from '../../../Utilities/DisplayUtil'
+import DefaultStyle from '../../../Styles/ListStyle'
 export default class PicCell extends React.Component {
     render() {
         const picInfo = this.props.picInfo;
         return (
-            <View style={styles.container}>
+            <View style={DefaultStyle.column_container}>
                 <View style={styles.content}>
                     <Image style={styles.image} source={{url: picInfo.hp_img_url}}/>
                     <View style={styles.row}>
@@ -48,10 +49,6 @@ export default class PicCell extends React.Component {
     }
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column'
-    },
     content: {
         borderColor: "#a0a0a0",
         borderWidth: 1,

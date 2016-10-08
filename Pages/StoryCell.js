@@ -7,6 +7,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import DefaultStyle from '../Styles/ListStyle'
 /**
  * Created by erfli on 9/10/16.
  */
@@ -37,7 +38,7 @@ export default class StoryCell extends React.Component {
                             />
                             <Text style={{flex: 1}}>{content}</Text>
                         </View>
-                        <View style={styles.divider}></View>
+                        <View style={DefaultStyle.divider}></View>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -70,10 +71,4 @@ var styles = StyleSheet.create({
             width: 0
         }
     },
-    divider: {
-        marginLeft: 10,
-        marginRight: 10,
-        height: 1,
-        backgroundColor: '#a0a0a0'
-    }
 });

@@ -11,6 +11,7 @@ import {
     Platform
 } from 'react-native';
 import Film from "./Film"
+import DefaultStyle from '../Styles/ListStyle'
 
 export default class Douban extends React.Component {
 
@@ -68,7 +69,7 @@ export default class Douban extends React.Component {
             );
         }
         return (
-            <View style={{flex: 1}}>
+            <View style={DefaultStyle.corner_bg}>
                 <ListView
                     refreshControl={
                         <RefreshControl
@@ -76,7 +77,7 @@ export default class Douban extends React.Component {
                             onRefresh={this.fetchDaily.bind(this)}
                         />
                     }
-                    style={styles.listview}
+                    style={DefaultStyle.list_view}
                     dataSource={this.state.dataSource}
                     renderRow={(rowData, sectionID, rowID)=>
                         <Film
@@ -88,10 +89,3 @@ export default class Douban extends React.Component {
         )
     }
 }
-var styles = StyleSheet.create({
-    listview: {
-        flex: 1,
-        backgroundColor: '#FCFCFC',
-        marginTop: 5
-    }
-});

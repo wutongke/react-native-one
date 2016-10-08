@@ -10,6 +10,8 @@ import {
     TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import DefaultStyle from '../Styles/ListStyle'
+
 export default class Film extends React.Component {
     onPress(url) {
         Actions.FilmDetail({targetUrl: url});
@@ -37,7 +39,7 @@ export default class Film extends React.Component {
                             </View>
 
                         </View>
-                        <View style={styles.divider}></View>
+                        <View style={DefaultStyle.divider}></View>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -70,12 +72,5 @@ var styles = StyleSheet.create({
             width: 0
         }
     },
-    divider: {
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 8,
-        marginBottom: 8,
-        height: 1,
-        backgroundColor: '#000'
-    }
+
 });
