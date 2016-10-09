@@ -19,7 +19,7 @@ export default class NavigationDrawer extends React.Component {
         onOpen={() => Actions.refresh({ key: state.key, open: true })}
         onClose={() => Actions.refresh({ key: state.key, open: false })}
         content={<TabView />}
-        tapToClose
+        captureGestures={false}
         openDrawerOffset={0.2}
         panCloseMask={0.2}
         negotiatePan
