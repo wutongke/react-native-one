@@ -1,7 +1,6 @@
 /**
  * Created by erfli on 9/10/16.
  */
-var STORE = require('../Utilities/TimeUtil')
 import * as React from "react";
 import {
     View,
@@ -9,11 +8,15 @@ import {
     ListView,
     RefreshControl,
     Image,
+    Text,
     Platform
 } from 'react-native';
 
 import StoryCell from './StoryCell'
 import DefaultStyle from '../Styles/ListStyle'
+import moment from 'moment';
+let page = 0;
+let today = moment();
 export default class ZhihuPage extends React.Component {
 
     constructor(props) {
@@ -22,8 +25,8 @@ export default class ZhihuPage extends React.Component {
             rowHasChanged: (r1, r2) =>r1 !== r2
         });
         this.state = {
-            date: STORE.date,
             refreshing: false,
+            loadingMore: false,
             db: [],
             dataSource: ds.cloneWithRows([]),
             loaded: false
@@ -34,26 +37,40 @@ export default class ZhihuPage extends React.Component {
         this.fetchDaily();
     }
 
-    componentDidMount() {
-        setInterval(() => {
-            if (this.state.date.toString() !== STORE.date) {
-                this.fetchDaily()
-            }
-        }, 1000)
+    fetchLatest = ()=> {
+        page = 0;
+        this.setState({
+            refreshing: true,
+            db:[]
+        });
+        this.fetchDaily();
     }
 
-    fetchDaily() {
-        this.state.date = STORE.date;
-        var url = "http://news.at.zhihu.com/api/4/news/before/" + STORE.date;
+    fetchMore = ()=> {
+        this.setState({
+            loadingMore: true
+        });
+        this.fetchDaily();
+    }
+
+    fetchDaily = ()=> {
+        if (this.state.refreshing || this.state.loadingMore) {
+            return;
+        }
+        let b = moment(today).subtract(page, 'd');
+        var url = "http://news.at.zhihu.com/api/4/news/before/" + b.format("YYYYMMDD");
         fetch(url)
             .then((response)=>response.json())
             .then((jsonResponse) => {
                 if (jsonResponse["stories"]) {
                     var stories = jsonResponse["stories"];
+                    page += 1;
                     this.setState({
-                        db: stories,
-                        dataSource: this.state.dataSource.cloneWithRows(stories),
+                        db: this.state.db.concat(stories),
+                        dataSource: this.state.dataSource.cloneWithRows(this.state.db.concat(stories)),
                         loaded: true,
+                        refreshing: false,
+                        loadingMore: false,
                     })
 
                 }
@@ -63,9 +80,24 @@ export default class ZhihuPage extends React.Component {
                 this.setState({
                     db: [],
                     loaded: true,
+                    refreshing: false,
+                    loadingMore: false,
                 });
             }
         })
+    }
+
+    renderFooter = ()=> {
+        if (this.state.loadingMore) {
+            return (
+                <View style={styles.footerContainer}>
+                    <Text style={styles.footerText}>
+                        数据加载中……
+                    </Text>
+                </View>
+            );
+        }
+        return <View />;
     }
 
     render() {
@@ -85,11 +117,15 @@ export default class ZhihuPage extends React.Component {
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
-                            onRefresh={this.fetchDaily.bind(this)}
+                            onRefresh={this.fetchLatest}
                         />
                     }
+                    enableEmptySections={true}
                     style={DefaultStyle.list_view}
                     dataSource={this.state.dataSource}
+                    onEndReached={this.fetchMore}
+                    onEndReachedThreshold={10}
+                    renderFooter={this.renderFooter}
                     renderRow={(rowData, sectionID, rowID)=>
                         <StoryCell
                             story={rowData}
@@ -100,3 +136,17 @@ export default class ZhihuPage extends React.Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    footerContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5
+    },
+    footerText: {
+        textAlign: 'center',
+        fontSize: 16,
+        marginLeft: 10
+    },
+})
