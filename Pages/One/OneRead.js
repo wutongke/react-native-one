@@ -108,6 +108,7 @@ export default class OneRead extends React.Component {
                             <TouchableHighlight
                                 key={rowData.content_id}
                                 activeOpacity={0.5}
+                                underlayColor="#00000000"
                                 onPress={()=>Actions.ReadingDetail({id: rowData.content_id})}
                             >
                                 <View style={{
@@ -160,12 +161,12 @@ var styles = StyleSheet.create({
     viewpage: {
         height: 140,
         width: deviceWidth,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#00000000',
         overflow: 'hidden'
     },
     listview: {
         flex: 1,
-        backgroundColor: '#FCFCFC',
+        backgroundColor: '#00000000',
         marginTop: 5
     },
     divider: {
