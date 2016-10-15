@@ -8,11 +8,12 @@ import saga from 'redux-saga';
 import sagaRoot from './sagas/index'
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import story from './reducers/Reducer';
+import story from './reducers/story';
+import {zhihu} from './reducers/zhihu'
 import Main from './Main';
 const middlewares = [];
 // 创建reducer
-const rootReducer = combineReducers({story});
+const rootReducer = combineReducers({story, zhihu});
 // 创建中间件saga
 const sagaMiddleware = saga();
 

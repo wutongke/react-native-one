@@ -9,86 +9,42 @@ import {
     RefreshControl,
     Image,
     Text,
-    Platform
+    Platform,
+    InteractionManager
 } from 'react-native';
 
 import StoryCell from './StoryCell'
 import DefaultStyle from '../Styles/ListStyle'
-import moment from 'moment';
-let page = 0;
-let today = moment();
-export default class ZhihuPage extends React.Component {
+import * as Actions from "../Actions/zhihu"
+import {connect} from "react-redux"
+class ZhihuPage extends React.Component {
 
     constructor(props) {
         super(props)
-        var ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) =>r1 !== r2
-        });
-        this.state = {
-            refreshing: false,
-            loadingMore: false,
-            db: [],
-            dataSource: ds.cloneWithRows([]),
-            loaded: false
-        }
     }
 
     componentWillMount() {
-        this.fetchDaily();
+        this.fetchLatest();
     }
 
     fetchLatest = ()=> {
-        page = 0;
-        this.setState({
-            refreshing: true,
-            db:[]
+        InteractionManager.runAfterInteractions(() => {
+            const {dispatch} = this.props;
+            dispatch(Actions.startRefreshZhihu());
         });
-        this.fetchDaily();
     }
 
     fetchMore = ()=> {
-        this.setState({
-            loadingMore: true
-        });
-        this.fetchDaily();
-    }
-
-    fetchDaily = ()=> {
-        if (this.state.refreshing || this.state.loadingMore) {
+        const {dispatch, zhihu} = this.props;
+        if (zhihu.refreshing || zhihu.loadingMore) {
             return;
         }
-        let b = moment(today).subtract(page, 'd');
-        var url = "http://news.at.zhihu.com/api/4/news/before/" + b.format("YYYYMMDD");
-        fetch(url)
-            .then((response)=>response.json())
-            .then((jsonResponse) => {
-                if (jsonResponse["stories"]) {
-                    var stories = jsonResponse["stories"];
-                    page += 1;
-                    this.setState({
-                        db: this.state.db.concat(stories),
-                        dataSource: this.state.dataSource.cloneWithRows(this.state.db.concat(stories)),
-                        loaded: true,
-                        refreshing: false,
-                        loadingMore: false,
-                    })
-
-                }
-            }).catch((error) => {
-
-            if (error instanceof SyntaxError) {
-                this.setState({
-                    db: [],
-                    loaded: true,
-                    refreshing: false,
-                    loadingMore: false,
-                });
-            }
-        })
+        dispatch(Actions.startLoadMoreZhihu(zhihu.page));
     }
 
+
     renderFooter = ()=> {
-        if (this.state.loadingMore) {
+        if (this.props.loadingMore) {
             return (
                 <View style={styles.footerContainer}>
                     <Text style={styles.footerText}>
@@ -101,7 +57,8 @@ export default class ZhihuPage extends React.Component {
     }
 
     render() {
-        if (!this.state.loaded && this.state.db.length === 0) {
+        const {zhihu} = this.props;
+        if (zhihu === undefined || !zhihu.loaded || zhihu.db.length === 0) {
             return (
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Image
@@ -116,13 +73,13 @@ export default class ZhihuPage extends React.Component {
                 <ListView
                     refreshControl={
                         <RefreshControl
-                            refreshing={this.state.refreshing}
+                            refreshing={zhihu.refreshing}
                             onRefresh={this.fetchLatest}
                         />
                     }
                     enableEmptySections={true}
                     style={DefaultStyle.list_view}
-                    dataSource={this.state.dataSource}
+                    dataSource={zhihu.dataSource}
                     onEndReached={this.fetchMore}
                     onEndReachedThreshold={10}
                     renderFooter={this.renderFooter}
@@ -150,3 +107,11 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
 })
+function mapStateToProps(state) {
+    const {zhihu} = state;
+    return {
+        zhihu
+    };
+}
+
+export default connect(mapStateToProps)(ZhihuPage);
