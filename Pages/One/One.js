@@ -6,10 +6,10 @@ import ScrollableTabView, {ScrollableTabBar}from 'react-native-scrollable-tab-vi
 import OneRead from './OneRead';
 import OneFilm from './OneFilm';
 import OneHome from './OneHome'
-import {Image} from 'react-native'
+import OneMusic from './OneMusic'
 import FacebookTabBar from '../../Components/TabBar'
 export default class One extends React.Component {
-    tabIcons = [require("../../Assets/Images/essay.png"), require("../../Assets/Images/home.png"), require("../../Assets/Images/film.png")];
+    tabIcons = [require("../../Assets/Images/essay.png"), require("../../Assets/Images/home.png"), require("../../Assets/Images/film.png"), require("../../Assets/Images/music.png")];
 
     render() {
         return (
@@ -18,6 +18,7 @@ export default class One extends React.Component {
                 <OneRead tabLabel="阅读"/>
                 <OneHome tabLabel="首页"/>
                 <OneFilm tabLabel="电影"/>
+                <OneMusic tabLabel="音乐"/>
             </ScrollableTabView>
         )
     }
