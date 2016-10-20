@@ -17,8 +17,8 @@ export default class One extends React.Component {
                                renderTabBar={()=><FacebookTabBar tabIcons={this.tabIcons}/>}>
                 <OneRead tabLabel="阅读"/>
                 <OneHome tabLabel="首页"/>
-                <OneFilm tabLabel="电影"/>
                 <OneMusic tabLabel="音乐"/>
+                <OneFilm tabLabel="电影"/>
             </ScrollableTabView>
         )
     }

@@ -28,8 +28,9 @@ export default class OneMusic extends React.Component {
         fetch("http://v3.wufazhuce.com:8000/api/music/idlist/0")
             .then((response)=>response.json())
             .then((jsonResponse)=> {
+                var musics = jsonResponse["data"];
                 this.setState({
-                    musicList: this.state.musicList.cloneWithPages(jsonResponse["data"])
+                    musicList: this.state.musicList.cloneWithPages(musics)
                 })
             }).catch((error)=> {
             if (error instanceof SyntaxError) {
@@ -43,7 +44,11 @@ export default class OneMusic extends React.Component {
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <ViewPager style={styles.row}
                            dataSource={this.state.musicList}
-                           renderPage={(data, pageId)=><OneMusicCell id={data}/>}
+                           renderPage={(data, pageId)=>(
+                               <View style={{flex: 1}}>
+                                   <OneMusicCell id={data}/>
+                               </View>
+                           )}
                            isLoop={false}
                            autoPlay={false}
                 />
