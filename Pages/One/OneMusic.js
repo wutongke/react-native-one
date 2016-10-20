@@ -41,7 +41,7 @@ export default class OneMusic extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'column'}}>
+            <View style={{flex: 1, flexDirection: 'column', overflow: 'hidden'}}>
                 <ViewPager style={styles.row}
                            dataSource={this.state.musicList}
                            renderPage={(data, pageId)=>(
