@@ -11,9 +11,9 @@ export default class OneMusic extends React.Component {
         var musicDataSource = new ViewPager.DataSource({
             pageHasChanged: (p1, p2) => p1 !== p2,
         });
-
         this.state = {
             musicList: musicDataSource.cloneWithPages([]),
+            visiblePageIndex: 0
         }
     }
 
@@ -46,9 +46,16 @@ export default class OneMusic extends React.Component {
                            dataSource={this.state.musicList}
                            renderPage={(data, pageId)=>(
                                <View style={{flex: 1}}>
-                                   <OneMusicCell id={data}/>
+                                   <OneMusicCell id={data} index={pageId}
+                                                 visiblePageIndex={this.state.visiblePageIndex}/>
                                </View>
                            )}
+                           onChangePage={(pageNumber)=> {
+                               this.setState({
+                                   visiblePageIndex: pageNumber
+                               })
+                           }}
+                           renderPageIndicator={()=>(<View style={{width: 0, height: 0}}></View>)}
                            isLoop={false}
                            autoPlay={false}
                 />

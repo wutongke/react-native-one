@@ -63,6 +63,7 @@ export default class OnePic extends React.Component {
                     isLoop={false}
                     autoPlay={false}
                     dataSource={this.state.images}
+                    renderPageIndicator={()=>(<View style={{width: 0, height: 0}}></View>)}
                     renderPage={(data, pageID)=><PicCell picInfo={data}/>}
                 />
             </View>

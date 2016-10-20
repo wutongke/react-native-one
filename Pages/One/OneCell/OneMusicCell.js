@@ -2,7 +2,7 @@
  * Created by erfli on 10/16/16.
  */
 import * as React from 'react'
-import {View, Image, Text, InteractionManager, ScrollView, TouchableWithoutFeedback, StyleSheet} from 'react-native'
+import {View, Image, Text, InteractionManager, ScrollView, TouchableHighlight, StyleSheet} from 'react-native'
 import {DeviceWidth} from '../../../Utilities/DisplayUtil'
 import * as RNFS from 'react-native-fs'
 let Sound = require('react-native-sound');
@@ -28,6 +28,12 @@ export default class OneMusicCell extends React.Component {
             const id = this.props.id;
             this.fetchMusicDetail(id);
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id != nextProps.visiblePageIndex) {
+            this.releaseSound();
+        }
     }
 
     fetchMusicDetail = (id)=> {
@@ -65,20 +71,21 @@ export default class OneMusicCell extends React.Component {
                         <Text>{music.author.user_name}</Text>
                         <Text>{music.author.desc}</Text>
                     </View >
-                    <TouchableWithoutFeedback style={{flex: 1, flexDirection: 'row', justifyContent: 'flex_end'}}
-                                              onPress={()=>this.operationMusic(music.music_id)}>
+                    <TouchableHighlight style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}
+                                        onPress={()=>this.operationMusic(music.music_id)}
+                                        underlayColor='#FFFFFF'>
                         <View style={{flexDirection: 'row'}}>
                             <Text
                                 style={[styles.content, {fontSize: 15, marginRight: 8}]}>{this.state.loadProcess}</Text>
-                            <Image style={{width: 40, height: 40}} source={playStatusIcon[this.state.playStatus]}/>
+                            <Image style={{width: 30, height: 30}} source={playStatusIcon[this.state.playStatus]}/>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </TouchableHighlight>
                 </View>
                 <Text style={[styles.content, {fontSize: 15}]}>{music.title}</Text>
                 <View View style={{flexDirection: 'row', marginTop: 20}}>
                     <Text style={styles.subtitle}>"music story"</Text>
                     <Text style={styles.subtitle}>{'分享: ' + music.sharenum}</Text>
-                    <Text style={styles.subtitle}>{'评论:' + music.commentnum}</Text>
+                    <Text style={styles.subtitle}>{'评论: ' + music.commentnum}</Text>
                 </View>
                 <Text style={[styles.content, {fontSize: 15}]}>{music.story_title}</Text>
                 <Text style={[styles.content, {fontSize: 12}]}>{music.story_author.user_name}</Text>
@@ -99,7 +106,10 @@ export default class OneMusicCell extends React.Component {
         }
     }
 
-    getMp3UrlAndDownloadFile(musicId) {
+    getMp3UrlAndDownloadFile = (musicId) => {
+        this.setState({
+            playStatus: loading
+        })
         fetch("https://api.lostg.com/music/xiami/songs/" + musicId)
             .then((response)=>response.json())
             .then((jsonResponse)=> {
@@ -112,7 +122,7 @@ export default class OneMusicCell extends React.Component {
             });
     }
 
-    downloadFileTest(background, url) {
+    downloadFileTest = (background, url)=> {
         if (jobId !== -1) {
             console.log('A download is already in progress');
             return;
@@ -128,9 +138,6 @@ export default class OneMusicCell extends React.Component {
         };
 
         var begin = ()=> {
-            this.setState({
-                playStatus: loading
-            })
             console.log('Download has begun');
         };
 
@@ -153,7 +160,8 @@ export default class OneMusicCell extends React.Component {
         ret.promise.then(res => {
             this.initSound();
             this.setState({
-                loadStatus: loaded
+                loadStatus: loaded,
+                loadProcess: ""
             });
             jobId = -1;
         }).catch((err) => {
@@ -161,20 +169,23 @@ export default class OneMusicCell extends React.Component {
         });
     }
 
-    playSound() {
+    playSound = ()=> {
         musicHandler.play((success) => {
             if (success) {
                 this.setState({
-                    playStatus: playing,
+                    playStatus: stop,
                 });
                 console.log('successfully finished playing');
             } else {
                 console.log('playback failed due to audio decoding errors');
             }
         });
+        this.setState({
+            playStatus: playing,
+        });
     }
 
-    initSound() {
+    initSound = ()=> {
         musicHandler = new Sound("music.mp3", Sound.DOCUMENT, (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
@@ -184,12 +195,19 @@ export default class OneMusicCell extends React.Component {
         });
     }
 
-    pauseSound() {
+    pauseSound = ()=> {
         if (this.state.loadStatus == loaded) {
             this.setState({
-                playSound: start
+                playStatus: start
             });
+            musicHandler.pause();
+        }
+    }
+
+    releaseSound = ()=> {
+        if (this.state.loadStatus == loaded) {
             musicHandler.stop();
+            musicHandler.release();
         }
     }
 }
