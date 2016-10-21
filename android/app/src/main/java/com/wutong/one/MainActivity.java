@@ -1,4 +1,4 @@
-package com.aksonov.routerflux.example;
+package com.wutong.one;
 
 import com.facebook.react.ReactActivity;
 

@@ -1,8 +1,7 @@
-package com.aksonov.routerflux.example;
+package com.wutong.one;
 
 import android.app.Application;
 
-import com.aksonov.routerflux.example.BuildConfig;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
