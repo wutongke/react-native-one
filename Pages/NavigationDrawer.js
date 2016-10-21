@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Drawer from 'react-native-drawer';
 import { DefaultRenderer, Actions } from 'react-native-router-flux';
 
-import TabView from './TabView';
+import TabView from '../Components/TabView';
 
 const propTypes = {
   navigationState: PropTypes.object,

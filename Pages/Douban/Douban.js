@@ -11,7 +11,7 @@ import {
     Platform
 } from 'react-native';
 import Film from "./Film"
-import DefaultStyle from '../Styles/ListStyle'
+import DefaultStyle from '../../Styles/ListStyle'
 
 export default class Douban extends React.Component {
 
@@ -62,7 +62,7 @@ export default class Douban extends React.Component {
             return (
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Image
-                        source={require('../Assets/Images/ring.gif')}
+                        source={require('../../Assets/Images/ring.gif')}
                         style={{width: 70, height: 70}}
                     />
                 </View>

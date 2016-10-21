@@ -2,10 +2,10 @@
  * Created by erfli on 9/21/16.
  */
 import {put, take, call, fork} from 'redux-saga/effects';
-import {toastShort} from "../Utilities/ToastUtil";
+import {toastShort} from "../Utils/ToastUtil";
 import * as ActionType from "../Constant/ActionType"
 import * as StoryAction from "../Actions/story";
-import {request} from "../Utilities/RequestUtil";
+import {request} from "../Utils/RequestUtil";
 export function* requestStory(id) {
     try {
         const story = yield call(request, "http://news-at.zhihu.com/api/4/news/" + id);

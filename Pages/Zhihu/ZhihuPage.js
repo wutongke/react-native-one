@@ -14,8 +14,8 @@ import {
 } from 'react-native';
 
 import StoryCell from './StoryCell'
-import DefaultStyle from '../Styles/ListStyle'
-import * as Actions from "../Actions/zhihu"
+import DefaultStyle from '../../Styles/ListStyle'
+import * as Actions from "../../Actions/zhihu"
 import {connect} from "react-redux"
 class ZhihuPage extends React.Component {
 
@@ -62,7 +62,7 @@ class ZhihuPage extends React.Component {
             return (
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Image
-                        source={require('../Assets/Images/ring.gif')}
+                        source={require('../../Assets/Images/ring.gif')}
                         style={{width: 70, height: 70}}
                     />
                 </View>

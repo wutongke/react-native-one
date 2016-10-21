@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import {View, Image, Text, InteractionManager, ScrollView, TouchableHighlight, StyleSheet} from 'react-native'
-import {DeviceWidth} from '../../../Utilities/DisplayUtil'
+import {DeviceWidth} from '../../../Utils/DisplayUtil'
 import * as RNFS from 'react-native-fs'
 let Sound = require('react-native-sound');
 let jobId = -1;

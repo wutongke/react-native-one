@@ -9,7 +9,7 @@ import {
     Dimensions,
     StyleSheet
 } from 'react-native';
-import  {apiURL} from "../../Utilities/UrlCons";
+import  {apiURL} from "../../Utils/UrlCons";
 /**
  * Created by erfli on 9/10/16.
  */

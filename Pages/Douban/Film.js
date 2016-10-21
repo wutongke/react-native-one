@@ -10,7 +10,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import DefaultStyle from '../Styles/ListStyle'
+import DefaultStyle from '../../Styles/ListStyle'
 
 export default class Film extends React.Component {
     onPress(url) {

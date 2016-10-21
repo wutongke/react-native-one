@@ -8,7 +8,7 @@ import{
     Text,
     StyleSheet
 } from 'react-native'
-import {DeviceWidth} from '../../../Utilities/DisplayUtil'
+import {DeviceWidth} from '../../../Utils/DisplayUtil'
 import DefaultStyle from '../../../Styles/ListStyle'
 export default class PicCell extends React.Component {
     render() {

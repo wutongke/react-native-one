@@ -2,10 +2,10 @@
  * Created by erfli on 10/7/16.
  */
 import * as React from "react";
-import {apiURL} from '../../Utilities/UrlCons';
+import {apiURL} from '../../Utils/UrlCons';
 import ViewPager from 'react-native-viewpager';
 import PicCell from './OneCell/PicCell'
-import {DeviceWidth} from '../../Utilities/DisplayUtil'
+import {DeviceWidth} from '../../Utils/DisplayUtil'
 import {
     View,
     BackAndroid,
@@ -34,7 +34,7 @@ export default class OnePic extends React.Component {
 
 
     fetchDaily() {
-        var DateUtil = require('../../Utilities/TimeUtil')
+        var DateUtil = require('../../Utils/TimeUtil')
         // var url = "http://v3.wufazhuce.com:8000/api/hp/bymonth/2016-08";
         var url = apiURL.baseUrl + apiURL.homePage + DateUtil.dateForm1;
         fetch(url)

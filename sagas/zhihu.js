@@ -2,10 +2,10 @@
  * Created by erfli on 10/15/16.
  */
 import {put, take, call, fork} from 'redux-saga/effects';
-import {toastShort} from "../Utilities/ToastUtil";
+import {toastShort} from "../Utils/ToastUtil";
 import * as ActionType from "../Constant/ActionType"
 import * as ZhihuAction from "../Actions/zhihu";
-import {request} from "../Utilities/RequestUtil";
+import {request} from "../Utils/RequestUtil";
 import moment from 'moment'
 export function* startRefreshZhihu() {
     try {

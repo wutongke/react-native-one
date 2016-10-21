@@ -13,7 +13,7 @@ import {
     InteractionManager,
     StyleSheet
 } from 'react-native';
-import {apiURL} from "../../Utilities/UrlCons";
+import {apiURL} from "../../Utils/UrlCons";
 import {Actions} from 'react-native-router-flux';
 /**
  * Created by erfli on 9/10/16.

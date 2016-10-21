@@ -7,7 +7,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import DefaultStyle from '../Styles/ListStyle'
+import DefaultStyle from '../../Styles/ListStyle'
 /**
  * Created by erfli on 9/10/16.
  */

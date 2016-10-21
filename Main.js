@@ -1,8 +1,8 @@
 import * as React from "react";
 import Drawer from "./Pages/NavigationDrawer"
-import ZhiHuPage from "./Pages/ZhihuPage"
-import StoryDetailPage from "./Pages/StoryDetailPage"
-import Douban from "./Pages/Douban"
+import ZhiHuPage from "./Pages/Zhihu/ZhihuPage"
+import StoryDetailPage from "./Pages/Zhihu/StoryDetailPage"
+import Douban from "./Pages/Douban/Douban"
 import One from "./Pages/One/One"
 import ReadingDetail from "./Pages/One/ReadingDetail"
 import {Platform} from 'react-native'

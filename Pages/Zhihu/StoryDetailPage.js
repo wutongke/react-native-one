@@ -7,7 +7,7 @@ import {
     WebView,
     Image
 } from 'react-native';
-import * as Actions from "../Actions/story"
+import * as Actions from "../../Actions/story"
 import {connect} from "react-redux"
 /**
  * Created by erfli on 9/11/16.
@@ -38,7 +38,7 @@ class StoryDetailPage extends React.Component {
             return (
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Image
-                        source={require('../Assets/Images/ring.gif')}
+                        source={require('../../Assets/Images/ring.gif')}
                         style={{width: 70, height: 70}}
                     />
                 </View>
