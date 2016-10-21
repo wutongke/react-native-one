@@ -245,10 +245,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     music_content: {
-        borderColor: "#a0a0a0",
+        borderColor: "#f0f0f0",
         height: 90,
         flex: 1,
-        borderWidth: 1,
+        borderWidth: 0.2,
         borderRadius: 3,
         marginRight: 5,
         marginLeft: 5,
@@ -256,6 +256,13 @@ const styles = StyleSheet.create({
         padding: 5,
         backgroundColor: '#fff',
         flexDirection: 'column',
+        shadowColor: '#f0f0f0',
+        shadowOpacity: 0.8,
+        shadowRadius: 1,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
     },
     content: {
         marginRight: 5,
