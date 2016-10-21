@@ -28,8 +28,7 @@ export default class PicCell extends React.Component {
                     flex: 1,
                     width: DeviceWidth,
                     flexDirection: 'row',
-                    justifyContent: 'flex-end',
-                    alignItems: 'flex-end'
+                    marginTop: 15
                 }}>
                     <View style={styles.bottom_view}>
                         <Text style={styles.bottom_text}>转发: </Text>

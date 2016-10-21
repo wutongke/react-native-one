@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "LZhihu.app"
-               BlueprintName = "LZhihu"
-               ReferencedContainer = "container:LZhihu.xcodeproj">
+               BlueprintName = "One"
+               ReferencedContainer = "container:One.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "LZhihu.xctest"
-               BlueprintName = "LZhihuTests"
-               ReferencedContainer = "container:LZhihu.xcodeproj">
+               BlueprintName = "OneTests"
+               ReferencedContainer = "container:One.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "LZhihu.xctest"
-               BlueprintName = "LZhihuTests"
-               ReferencedContainer = "container:LZhihu.xcodeproj">
+               BlueprintName = "OneTests"
+               ReferencedContainer = "container:One.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "LZhihu.app"
-            BlueprintName = "LZhihu"
-            ReferencedContainer = "container:LZhihu.xcodeproj">
+            BlueprintName = "One"
+            ReferencedContainer = "container:One.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "LZhihu.app"
-            BlueprintName = "LZhihu"
-            ReferencedContainer = "container:LZhihu.xcodeproj">
+            BlueprintName = "One"
+            ReferencedContainer = "container:One.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -100,8 +100,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "LZhihu.app"
-            BlueprintName = "LZhihu"
-            ReferencedContainer = "container:LZhihu.xcodeproj">
+            BlueprintName = "One"
+            ReferencedContainer = "container:One.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

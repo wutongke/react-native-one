@@ -13,7 +13,7 @@ export default class One extends React.Component {
 
     render() {
         return (
-            <ScrollableTabView initialPage={1} locked={true} prerenderingSiblingsNumber={1} tabBarPosition="bottom"
+            <ScrollableTabView initialPage={0} locked={true} prerenderingSiblingsNumber={1} tabBarPosition="bottom"
                                renderTabBar={()=><FacebookTabBar tabIcons={this.tabIcons}/>}>
                 <OneHome tabLabel="首页"/>
                 <OneRead tabLabel="阅读"/>

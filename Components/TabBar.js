@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-const FacebookTabBar = React.createClass({
+const CustomTabBar = React.createClass({
     propTypes: {
         goToPage: React.PropTypes.func,
         activeTab: React.PropTypes.number,
@@ -48,7 +48,7 @@ const FacebookTabBar = React.createClass({
                         <Image style={{width: 25, height: 25,}} source={this.props.tabIcons[i]}/>
                         <Text style={{
                             fontSize: 8,
-                            color: this.props.activeTab === i ? "#000000" : "#696969",
+                            color: this.props.activeTab === i ? "#3399ff" : "#696969",
                         }}>{tab}</Text>
                     </View >
                 </TouchableOpacity >;
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FacebookTabBar;
+export default CustomTabBar;
