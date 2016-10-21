@@ -129,6 +129,14 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
+    // If your app supports Android versions before Ice Cream Sandwich (API level 14)
+    compile 'com.facebook.fresco:animated-base-support:0.11.0'
+    //http://stackoverflow.com/questions/38169519/how-to-display-gif-in-react-native-android-app
+    compile 'com.facebook.fresco:animated-gif:0.12.0'//for gif
+    // For WebP support, including animated WebP
+    compile 'com.facebook.fresco:animated-webp:0.11.0'
+    // For WebP support, without animations
+    compile 'com.facebook.fresco:webpsupport:0.11.0'
     compile project(':react-native-fs')
     compile project(':RNSound')
 }

@@ -146,7 +146,7 @@ export default class OneRead extends React.Component {
             <Image style={{
                 height: 140,
                 width: deviceWidth,
-            }} source={{url: data.cover}}>
+            }} source={{uri: data.cover}}>
             </Image>
         );
     }

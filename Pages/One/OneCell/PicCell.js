@@ -16,7 +16,7 @@ export default class PicCell extends React.Component {
         return (
             <View style={DefaultStyle.column_container}>
                 <View style={styles.content}>
-                    <Image style={styles.image} source={{url: picInfo.hp_img_url}}/>
+                    <Image style={styles.image} source={{uri: picInfo.hp_img_url}}/>
                     <View style={styles.row}>
                         <Text style={styles.des_text}>{picInfo.hp_title}</Text>
                         <Text style={styles.des_right_text}>{picInfo.hp_author}</Text>

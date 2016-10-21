@@ -80,7 +80,7 @@ export default class OneFilm extends React.Component {
                     flex: 1,
                     width: deviceWidth,
                     height: 140,
-                }} source={{url: rowData.cover}}>
+                }} source={{uri: rowData.cover}}>
                     <View style={styles.row}>
                         <Text style={{
                             fontSize: 28,

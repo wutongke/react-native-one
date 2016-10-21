@@ -64,10 +64,10 @@ export default class OneMusicCell extends React.Component {
         }
         return (
             <ScrollView style={{flex: 1, flexDirection: 'column'}}>
-                <Image style={{width: DeviceWidth, height: DeviceWidth / 2}} source={{url: music.cover}}/>
+                <Image style={{width: DeviceWidth, height: DeviceWidth / 2}} source={{uri: music.cover}}/>
                 <View style={styles.music_content}>
                     <View style={styles.music_author_content}>
-                        <Image style={{width: 50, height: 50, borderRadius: 25}} source={{url: music.author.web_url}}/>
+                        <Image style={{width: 50, height: 50, borderRadius: 25}} source={{uri: music.author.web_url}}/>
                         <View style={{flex: 1, flexDirection: 'column', marginLeft: 10}}>
                             <Text style={{fontSize: 13, color: '#3399ff'}}>{music.author.user_name}</Text>
                             <Text style={{fontSize: 13, color: '#a0a0a0', marginTop: 5}}>{music.author.desc}</Text>
