@@ -65,31 +65,54 @@ export default class OneMusicCell extends React.Component {
         return (
             <ScrollView style={{flex: 1, flexDirection: 'column'}}>
                 <Image style={{width: DeviceWidth, height: DeviceWidth / 2}} source={{url: music.cover}}/>
-                <View style={styles.music_author_content}>
-                    <Image style={{width: 50, height: 50,}} source={{url: music.author.web_url}}/>
-                    <View style={{flex: 1, flexDirection: 'column', marginLeft: 20}}>
-                        <Text>{music.author.user_name}</Text>
-                        <Text>{music.author.desc}</Text>
-                    </View >
-                    <TouchableHighlight style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}
-                                        onPress={()=>this.operationMusic(music.music_id)}
-                                        underlayColor='#FFFFFF'>
-                        <View style={{flexDirection: 'row'}}>
-                            <Text
-                                style={[styles.content, {fontSize: 15, marginRight: 8}]}>{this.state.loadProcess}</Text>
-                            <Image style={{width: 30, height: 30}} source={playStatusIcon[this.state.playStatus]}/>
-                        </View>
-                    </TouchableHighlight>
+                <View style={styles.music_content}>
+                    <View style={styles.music_author_content}>
+                        <Image style={{width: 50, height: 50, borderRadius: 25}} source={{url: music.author.web_url}}/>
+                        <View style={{flex: 1, flexDirection: 'column', marginLeft: 10}}>
+                            <Text style={{fontSize: 13, color: '#3399ff'}}>{music.author.user_name}</Text>
+                            <Text style={{fontSize: 13, color: '#a0a0a0', marginTop: 5}}>{music.author.desc}</Text>
+                        </View >
+                        <TouchableHighlight
+                            style={{
+                                flex: 1,
+                                flexDirection: 'row',
+                                justifyContent: 'flex-end',
+                                marginRight: 10,
+                            }}
+                            onPress={()=>this.operationMusic(music.music_id)}
+                            underlayColor='#FFFFFF'>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Text
+                                    style={[styles.content, {
+                                        fontSize: 8,
+                                        marginRight: 8,
+                                        color: '#a0a0a0'
+                                    }]}>{this.state.loadProcess}</Text>
+                                <Image style={{width: 30, height: 30}} source={playStatusIcon[this.state.playStatus]}/>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                    <View style={ {flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={[styles.content, {fontSize: 15, flex: 1,}]}>{music.title}</Text>
+                        <Text
+                            style={[styles.content, {
+                                fontSize: 10,
+                                marginRight: 10
+                            }]}>{music.maketime}</Text>
+                    </View>
                 </View>
-                <Text style={[styles.content, {fontSize: 15}]}>{music.title}</Text>
                 <View View style={{flexDirection: 'row', marginTop: 20}}>
-                    <Text style={styles.subtitle}>"music story"</Text>
+                    <Text style={styles.subtitle}>音乐故事</Text>
                     <Text style={styles.subtitle}>{'分享: ' + music.sharenum}</Text>
                     <Text style={styles.subtitle}>{'评论: ' + music.commentnum}</Text>
                 </View>
-                <Text style={[styles.content, {fontSize: 15}]}>{music.story_title}</Text>
-                <Text style={[styles.content, {fontSize: 12}]}>{music.story_author.user_name}</Text>
-                <Text style={[styles.content, {fontSize: 10}]}>{music.story.replace(/<br>/g, " ")}</Text>
+                <Text style={[styles.content, {fontSize: 14, marginTop: 15}]}>{music.story_title}</Text>
+                <Text style={[styles.content, {
+                    fontSize: 12,
+                    marginTop: 10,
+                    color: '#3399ff'
+                }]}>{music.story_author.user_name}</Text>
+                <Text style={[styles.content, {fontSize: 11, marginTop: 8}]}>{music.story.replace(/<br>/g, " ")}</Text>
             </ScrollView>
         );
     }
@@ -110,19 +133,23 @@ export default class OneMusicCell extends React.Component {
         this.setState({
             playStatus: loading
         })
-        fetch("https://api.lostg.com/music/xiami/songs/" + musicId)
-            .then((response)=>response.json())
-            .then((jsonResponse)=> {
-                this.downloadFileTest(false, jsonResponse.location);
-            })
-            .catch((error)=> {
-                if (error instanceof SyntaxError) {
-                    console.error(error);
-                }
-            });
+        if (musicId.startsWith('http')) {
+            this.downloadFile(false, musicId);
+        } else {
+            fetch("https://api.lostg.com/music/xiami/songs/" + musicId)
+                .then((response)=>response.json())
+                .then((jsonResponse)=> {
+                    this.downloadFile(false, jsonResponse.location);
+                })
+                .catch((error)=> {
+                    if (error instanceof SyntaxError) {
+                        console.error(error);
+                    }
+                });
+        }
     }
 
-    downloadFileTest = (background, url)=> {
+    downloadFile = (background, url)=> {
         if (jobId !== -1) {
             console.log('A download is already in progress');
             return;
@@ -173,7 +200,7 @@ export default class OneMusicCell extends React.Component {
         musicHandler.play((success) => {
             if (success) {
                 this.setState({
-                    playStatus: stop,
+                    playStatus: start,
                 });
                 console.log('successfully finished playing');
             } else {
@@ -213,22 +240,27 @@ export default class OneMusicCell extends React.Component {
 }
 const styles = StyleSheet.create({
     music_author_content: {
+        height: 60,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    music_content: {
         borderColor: "#a0a0a0",
-        height: 65,
+        height: 90,
         flex: 1,
         borderWidth: 1,
         borderRadius: 3,
         marginRight: 5,
         marginLeft: 5,
-        marginTop: 10,
+        marginTop: -10,
         padding: 5,
-        flexDirection: 'row',
-        alignItems: 'center'
+        backgroundColor: '#fff',
+        flexDirection: 'column',
     },
     content: {
         marginRight: 5,
         marginLeft: 5,
-        marginTop: 15,
+        marginTop: 3,
     },
     subtitle: {
         marginRight: 5,
