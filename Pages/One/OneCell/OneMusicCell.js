@@ -213,7 +213,7 @@ export default class OneMusicCell extends React.Component {
     }
 
     initSound = ()=> {
-        musicHandler = new Sound("music.mp3", Sound.DOCUMENT, (error) => {
+        musicHandler = new Sound(`${RNFS.DocumentDirectoryPath}/music.mp3`, '',(error) => {
             if (error) {
                 console.log('failed to load the sound', error);
             } else { // loaded successfully

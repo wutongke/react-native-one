@@ -5,6 +5,7 @@ import StoryDetailPage from "./Pages/StoryDetailPage"
 import Douban from "./Pages/Douban"
 import One from "./Pages/One/One"
 import ReadingDetail from "./Pages/One/ReadingDetail"
+import {Platform} from 'react-native'
 import {
     Router,
     Scene,
@@ -70,7 +71,7 @@ const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) 
         shadowRadius: null,
     };
     if (computedProps.isActive) {
-        style.marginTop = computedProps.hideNavBar ? 0 : 64;
+        style.marginTop = computedProps.hideNavBar ? 0 : (Platform.OS === 'ios' ? 64 : 54);
     }
     return style;
 };
