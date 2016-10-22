@@ -16,13 +16,13 @@ export default class OneMusicCell extends React.Component {
         super(props);
         this.state = {
             music: {},
-            loadStatus: beginLoad,
+            loadStatus: this.props.id === MusicManager.musicId ? loaded : beginLoad,
             playStatus: this.props.id === MusicManager.musicId ? MusicManager.playState : MusicManager.start,
             loadProcess: ""
         }
-        if (this.props.id === MusicManager.musicId) {
+        if (this.props.id == MusicManager.musicId) {
             musicHandler = MusicManager.musicHandler;
-        } else if (!isEmpty(MusicManager.musicHandler)) {
+        } else if (this.props.index == this.props.visiblePageIndex && !isEmpty(MusicManager.musicHandler)) {
             MusicManager.musicHandler.stop();
             MusicManager.musicHandler.release();
         }
