@@ -16,7 +16,7 @@
     "react-native-drawer": "^2.2.2",
     "react-native-fs": "^2.0.1-rc.2",
     "react-native-root-toast": "^1.0.3",
-    "react-native-router-flux": "file:../",
+    "react-native-router-flux": "3.30.1",
     "react-native-scrollable-tab-view": "0.6.0",
     "react-native-sound": "^0.8.3",
     "react-native-viewpager": "^0.2.1",

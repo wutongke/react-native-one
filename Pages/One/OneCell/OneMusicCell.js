@@ -5,9 +5,9 @@ import * as React from 'react'
 import {View, Image, Text, InteractionManager, ScrollView, TouchableHighlight, StyleSheet} from 'react-native'
 import {DeviceWidth} from '../../../Utils/DisplayUtil'
 import * as RNFS from 'react-native-fs'
+import * as MusicManager from '../../../Components/MusicManager'
 let Sound = require('react-native-sound');
 let jobId = -1;
-let [playing, loading,start]=[0, 1, 2];
 let [beginLoad, loaded] = [1, 2];
 let playStatusIcon = [require("../../../Assets/Images/playing.png"), require("../../../Assets/Images/loading.gif"), require("../../../Assets/Images/stop.png")];
 let musicHandler = {};
@@ -17,21 +17,31 @@ export default class OneMusicCell extends React.Component {
         this.state = {
             music: {},
             loadStatus: beginLoad,
-            playStatus: start,
+            playStatus: this.props.id === MusicManager.musicId ? MusicManager.playState : MusicManager.start,
             loadProcess: ""
+        }
+        if (this.props.id === MusicManager.musicId) {
+            musicHandler = MusicManager.musicHandler;
+        } else if (!isEmpty(MusicManager.musicHandler)) {
+            MusicManager.musicHandler.stop();
+            MusicManager.musicHandler.release();
         }
     }
 
     componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
             // ...long-running synchronous task...
-            const id = this.props.id;
-            this.fetchMusicDetail(id);
+            this.fetchMusicDetail(this.props.id);
         });
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.id != nextProps.visiblePageIndex) {
+        if (parseInt(nextProps.index) != nextProps.visiblePageIndex) {
+            this.setState({
+                loadStatus: beginLoad,
+                playStatus: MusicManager.start,
+                loadProcess: ""
+            });
             this.releaseSound();
         }
     }
@@ -118,7 +128,7 @@ export default class OneMusicCell extends React.Component {
     }
 
     operationMusic(musicId) {
-        if (this.state.playStatus == playing) {
+        if (this.state.playStatus == MusicManager.playing) {
             this.pauseSound();
         } else {
             if (this.state.loadStatus == loaded) {
@@ -130,8 +140,9 @@ export default class OneMusicCell extends React.Component {
     }
 
     getMp3UrlAndDownloadFile = (musicId) => {
+        MusicManager.playState = MusicManager.loading;
         this.setState({
-            playStatus: loading
+            playStatus: MusicManager.playState
         })
         if (musicId.startsWith('http')) {
             this.downloadFile(false, musicId);
@@ -199,24 +210,28 @@ export default class OneMusicCell extends React.Component {
     playSound = ()=> {
         musicHandler.play((success) => {
             if (success) {
+                MusicManager.playState = MusicManager.start;
                 this.setState({
-                    playStatus: start,
+                    playStatus: MusicManager.playState,
                 });
                 console.log('successfully finished playing');
             } else {
                 console.log('playback failed due to audio decoding errors');
             }
         });
+        MusicManager.playState = MusicManager.playing;
         this.setState({
-            playStatus: playing,
+            playStatus: MusicManager.playState,
         });
     }
 
     initSound = ()=> {
-        musicHandler = new Sound(`${RNFS.DocumentDirectoryPath}/music.mp3`, '',(error) => {
+        musicHandler = new Sound(`${RNFS.DocumentDirectoryPath}/music.mp3`, '', (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
             } else { // loaded successfully
+                MusicManager.musicId = this.props.id;
+                MusicManager.musicHandler = musicHandler;
                 this.playSound();
             }
         });
@@ -224,8 +239,9 @@ export default class OneMusicCell extends React.Component {
 
     pauseSound = ()=> {
         if (this.state.loadStatus == loaded) {
+            MusicManager.playState = MusicManager.start;
             this.setState({
-                playStatus: start
+                playStatus: MusicManager.playState
             });
             musicHandler.pause();
         }
