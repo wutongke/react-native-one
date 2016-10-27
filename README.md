@@ -1,5 +1,5 @@
-# react-native-zhihu
-simple app for one zhihudaily
+# react-native-one
+simple app for one
 
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/1407686-5faa71919119a844.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/300)
